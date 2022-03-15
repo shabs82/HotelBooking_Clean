@@ -4,6 +4,7 @@ using HotelBooking.Core;
 
 namespace HotelBooking.UnitTests.Fakes
 {
+   
     public class FakeBookingRepository : IRepository<Booking>
     {
         private DateTime fullyOccupiedStartDate;
