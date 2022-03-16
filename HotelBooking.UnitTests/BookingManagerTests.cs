@@ -105,7 +105,7 @@ namespace HotelBooking.UnitTests
             var bookingManager = new BookingManager(_mockBookingRepo.Object, _mockRoomRepo.Object);
             Booking booking = new()
             {
-                StartDate = DateTime.Today.AddDays(11),
+                StartDate = DateTime.Today.AddDays(12),
                 EndDate = DateTime.Today.AddDays(12)
             };
 
