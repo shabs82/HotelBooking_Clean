@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using Xunit;
 
 namespace SpecFlowProject1.Steps
 {
@@ -24,10 +25,29 @@ namespace SpecFlowProject1.Steps
         [Given(@"the start date is yesterday")]
         public void GivenTheStartDateIsYesterday()
         {
-            _bookingManager.CreateBooking(DateTime.Today.AddDays(-1), DateTime.Today.AddDays(1));
+            _scenarioContext["StartDate"] = DateTime.Today;
         }
 
+        [When(@"create button is clicked")]
+        public void WhenCreateButtonIsClicked()
+        {
+            try
+            {
+                var today = (DateTime)_scenarioContext["StartDate"];
 
+                _bookingManager.FindAvailableRoom(today, DateTime.Today.AddDays(2));
+            }
+            catch (ArgumentException err)
+            {
+                ScenarioContext.Current[("Error")] = err;
+            }
+        }
+
+        [Then(@"the system should throw an invalid date exception")]
+        public void ThenTheSystemShouldThrowAnInvalidDateException()
+        {
+            Assert.True(ScenarioContext.Current.ContainsKey("Error"));
+        }
 
 
     }
