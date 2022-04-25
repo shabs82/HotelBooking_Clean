@@ -19,7 +19,7 @@ namespace SpecFlowProject1.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class CreateBookingFeature : object, Xunit.IClassFixture<CreateBookingFeature.FixtureData>, System.IDisposable
+    public partial class AddExamplesFeature : object, Xunit.IClassFixture<AddExamplesFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace SpecFlowProject1.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "CreateBooking.feature"
+#line 1 "StartDateInPast.feature"
 #line hidden
         
-        public CreateBookingFeature(CreateBookingFeature.FixtureData fixtureData, SpecFlowProject1_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public AddExamplesFeature(AddExamplesFeature.FixtureData fixtureData, SpecFlowProject1_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,8 @@ namespace SpecFlowProject1.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "CreateBooking", "\tSimple calculator for adding two numbers", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "AddExamples", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
+                    "f two numbers", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,17 +81,27 @@ namespace SpecFlowProject1.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Create Booking with Start Date in the past")]
-        [Xunit.TraitAttribute("FeatureTitle", "CreateBooking")]
-        [Xunit.TraitAttribute("Description", "Create Booking with Start Date in the past")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Try book in the past")]
+        [Xunit.TraitAttribute("FeatureTitle", "AddExamples")]
+        [Xunit.TraitAttribute("Description", "Try book in the past")]
         [Xunit.TraitAttribute("Category", "mytag")]
-        public void CreateBookingWithStartDateInThePast()
+        [Xunit.InlineDataAttribute("\"2022-04-20\"", "\"2005-05-05\"", "exception", new string[0])]
+        [Xunit.InlineDataAttribute("\"2005-04-21\"", "\"2005-05-10\"", "exception", new string[0])]
+        public void TryBookInThePast(string startDate, string endDate, string exception, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "mytag"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Booking with Start Date in the past", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+            argumentsOfScenario.Add("startDate", startDate);
+            argumentsOfScenario.Add("endDate", endDate);
+            argumentsOfScenario.Add("exception", exception);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try book in the past", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,14 +111,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
- testRunner.Given("the start date is yesterday", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 7
- testRunner.When("create button is clicked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 8
- testRunner.Then("the system should throw an invalid date exception", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given(string.Format("I have entered {0} into the app", startDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
+ testRunner.And(string.Format("I have also entered {0} into the app", endDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.When("I press confirm", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 11
+ testRunner.Then(string.Format("the result should be {0} on the screen", exception), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -120,12 +134,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                CreateBookingFeature.FeatureSetup();
+                AddExamplesFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                CreateBookingFeature.FeatureTearDown();
+                AddExamplesFeature.FeatureTearDown();
             }
         }
     }
