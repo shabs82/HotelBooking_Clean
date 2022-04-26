@@ -12,5 +12,5 @@ Scenario Outline: Try book in the past
 
 	Examples:
 	| startDate | endDate | exception |
-	| "2022-04-20" | "2005-05-05" | exception |
-	| "2005-04-21" | "2005-05-10" | exception |
+	| 2022-04-20 | 2022-05-05 | exception |
+	| 2005-04-21 | 2022-05-10 | exception |

@@ -85,8 +85,8 @@ namespace SpecFlowProject1.Features
         [Xunit.TraitAttribute("FeatureTitle", "AddExamples")]
         [Xunit.TraitAttribute("Description", "Try book in the past")]
         [Xunit.TraitAttribute("Category", "mytag")]
-        [Xunit.InlineDataAttribute("\"2022-04-20\"", "\"2005-05-05\"", "exception", new string[0])]
-        [Xunit.InlineDataAttribute("\"2005-04-21\"", "\"2005-05-10\"", "exception", new string[0])]
+        [Xunit.InlineDataAttribute("2022-04-20", "2022-05-05", "exception", new string[0])]
+        [Xunit.InlineDataAttribute("2005-04-21", "2022-05-10", "exception", new string[0])]
         public void TryBookInThePast(string startDate, string endDate, string exception, string[] exampleTags)
         {
             string[] @__tags = new string[] {
